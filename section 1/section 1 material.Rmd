@@ -1,9 +1,16 @@
 ---
 title: "section 1"
-author: "Masaoud"
+author: "Masaoud AND Thu"
 date: "2/1/2023"
 output: pdf_document
 ---
+
+## Info
+
+- Thu: OH on Tuesday 9-10:30am in SC 316.06. Section on Thursday 9-10am SC 309a
+- Masaoud: OH on Tuesday 9-10:30pm in Kirkland Dhall. Section on Friday 12-1pm in Sever 209.
+
+\newpage
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
