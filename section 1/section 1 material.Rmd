@@ -9,21 +9,94 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(tidyr)
+library(ggplot2)
+```
+
 
 ## Data
 
 ```{r}
 data("WorldPhones")
+WorldPhones = data.frame(WorldPhones)
+```
+
+```{r}
+WorldPhones$year <- as.numeric(rownames(WorldPhones))
 WorldPhones
 ```
 
 ```{r}
-summary(WorldPhones)
+WorldPhonesLong <- gather(WorldPhones, cont, phoneuse, N.Amer:Mid.Amer, factor_key=TRUE)
+WorldPhonesLong
+```
+
+\newpage
+
+## Line and Point plots
+
+```{r}
+ggplot(data = WorldPhonesLong,
+       mapping = aes(
+         x = year,
+         y = phoneuse
+       )) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = WorldPhonesLong,
+       mapping = aes(
+         x = year,
+         y = phoneuse,
+         color = cont
+       )) +
+  geom_point()
+```
+
+```{r}
+ggplot(data = WorldPhonesLong,
+       mapping = aes(
+         x = year,
+         y = phoneuse,
+         color = cont
+       )) +
+  geom_point() +
+  geom_line()
 ```
 
 
-## Plots
+```{r}
+ggplot(data = WorldPhonesLong,
+       mapping = aes(
+         x = year,
+         y = phoneuse,
+         color = cont
+       )) +
+  geom_line()
+```
 
+\newpage
+
+## Bar Plot
+
+```{r}
+WorldPhonesLong1955 = subset(WorldPhonesLong, year == 1956)
+```
+
+```{r}
+### Bar plot here
+```
+
+\newpage
+
+## Histogram
+
+```{r}
+### Hist plot here
+### Make a histogram for every continient
+```
 
 
 
