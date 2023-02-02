@@ -7,7 +7,7 @@ output: pdf_document
 
 ## Info
 
-- Thu: OH on Tuesday 9-10:30am in SC 316.06. Section on Thursday 9-10am SC 309a
+- Thu: OH on Tuesday 9-10:30am in SC 316.06. Section on Thursday 9-10am SC 309a.
 - Masaoud: OH on Tuesday 9-10:30pm in Kirkland Dhall. Section on Friday 12-1pm in Sever 209.
 
 \newpage
@@ -89,7 +89,7 @@ ggplot(data = WorldPhonesLong,
 ## Bar Plot
 
 ```{r}
-WorldPhonesLong1955 = subset(WorldPhonesLong, year == 1956)
+WorldPhonesLong1956 = subset(WorldPhonesLong, year == 1956)
 ```
 
 ```{r}
@@ -102,7 +102,7 @@ WorldPhonesLong1955 = subset(WorldPhonesLong, year == 1956)
 
 ```{r}
 ### Hist plot here
-### Make a histogram for every continient
+### Make a histogram for every continent
 ```
 
 
