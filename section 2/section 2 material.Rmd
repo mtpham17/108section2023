@@ -1,0 +1,65 @@
+---
+title: "section 1"
+author: "Masaoud AND Thu"
+date: "2/1/2023"
+output: pdf_document
+---
+
+## Info
+
+- Thu: OH on Tuesday 9-10:30am in SC 316.06. Section on Thursday 9-10am SC 309a
+- Masaoud: OH on Tuesday 9-10:30pm in Kirkland Dhall. Section on Friday 12-1pm in Sever 209.
+
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyr)
+library(ggplot2)
+```
+
+
+## Data
+
+```{r}
+data("airquality")
+```
+
+```{r}
+airquality
+```
+\newpage
+
+# Remove NA:
+
+```{r}
+
+```
+
+
+\newpage
+
+# Make a wind chill column
+
+```{r}
+# formula:  35.74 + 0.6215 T - 35.75 V^0.16 + 0.4275 T V^0.16
+```
+
+\newpage
+
+# Group by month, average, and make bar plot
+
+
+\newpage
+
+# Animate Bar Plot
+
+```{r}
+# Quantity on x axis, monthly average on y axis, animate the different months
+```
+
+
+

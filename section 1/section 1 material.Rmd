@@ -89,12 +89,25 @@ ggplot(data = WorldPhonesLong,
 ## Bar Plot
 
 ```{r}
-WorldPhonesLong1955 = subset(WorldPhonesLong, year == 1956)
+# WorldPhonesLong1955 = subset(WorldPhonesLong, year == 1956)
+library(gganimate)
 ```
 
 ```{r}
 ### Bar plot here
+p <- ggplot(WorldPhonesLong, aes(x = cont, y = phoneuse)) +
+  geom_col() 
+
+p_animate <- p +
+  transition_states(year)
 ```
+
+```{r}
+animate(p_animate, fps = 5, end_pause = 40,
+        height = 4, width = 6.5,
+        units = "in", res = 100)
+```
+
 
 \newpage
 
@@ -104,6 +117,75 @@ WorldPhonesLong1955 = subset(WorldPhonesLong, year == 1956)
 ### Hist plot here
 ### Make a histogram for every continient
 ```
+
+```{r}
+reprex({
+  library(tidyverse)
+  fandango_data <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/fandango/fandango_scrape.csv")
+  #> Rows: 510 Columns: 4
+  #> ── Column specification ────────────────────────────────────────────────────────
+  #> Delimiter: ","
+  #> chr (1): FILM
+  #> dbl (3): STARS, RATING, VOTES
+  #> 
+  #> ℹ Use `spec()` to retrieve the full column specification for this data.
+  #> ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+  
+  fandango_data_new <- fandango_data %>%
+    filter(VOTES >= 30) 
+  
+  
+  ggplot(data = fandango_data_new, mapping = aes(x = STARS
+  )) +
+    geom_area(stat = "count") +
+    coord_cartesian(xlim = c(0, 5),
+                    ylim = c(0,100)) +
+    labs(title = "Fandango's Lopsided Ratings Curve",
+         subtitle = "Ratings for 209 Films that played in theaters in 2015 and received
+         30+ reviews") +
+    theme(axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          plot.title = element_text(face = "bold"))
+  }, venue = "slack")
+```
+
+```{r}
+fandango_data_new <- fandango_data %>%
+  filter(VOTES >= 30) %>%
+  select(STARS, RATING, VOTES) %>%
+  #mutate(STARS = factor(STARS)) %>%
+  group_by(STARS) %>%
+  summarize(n = n()) %>%
+  mutate(prop = n/sum(n),
+         perc = prop * 100) 
+
+ggplot(data = fandango_data_new, mapping = aes(x = STARS,
+                                               y = perc,
+)) +
+  geom_area(fill = "red") +
+  coord_cartesian(xlim = c(0, 5),
+                  ylim = c(0,40)) +
+  labs(title = "Fandango's Lopsided Ratings Curve",
+       subtitle = "Ratings for 209 Films that played in theaters in 2015 and received
+       30+ reviews") +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        plot.title = element_text(face = "bold"))
+```
+
+
+```{r}
+ggplot(data = dat, mapping = aes(x = x, y = y)) +
+    geom_line()+
+    geom_area(mapping = aes(x = ifelse(x>65 & x< 70 , x, 0)), fill = "red") +
+    xlim(30, 80)
+```
+
+```{r}
+library(reprex)
+```
+
+
 
 
 
