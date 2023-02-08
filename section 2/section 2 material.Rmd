@@ -1,5 +1,5 @@
 ---
-title: "section 1"
+title: "section 2"
 author: "Masaoud AND Thu"
 date: "2/1/2023"
 output: pdf_document
@@ -50,7 +50,7 @@ airquality
 
 \newpage
 
-# Group by month, average, and make bar plot
+# Group by month, average, and make bar plot (or line plot is fine too)
 
 
 \newpage
@@ -58,7 +58,7 @@ airquality
 # Animate Bar Plot
 
 ```{r}
-# Quantity on x axis, monthly average on y axis, animate the different months
+# Type of air quality measure on x axis, monthly average on y axis, animate the change as we move across months
 ```
 
 
