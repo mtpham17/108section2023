@@ -50,7 +50,7 @@ airquality
 
 \newpage
 
-# Group by month, average, and make bar plot (or line plot is fine too)
+# Group by month, average, and make line plot (or whatever plot you want)
 
 
 \newpage
