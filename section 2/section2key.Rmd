@@ -1,0 +1,124 @@
+---
+title: "section 2"
+author: "Masaoud AND Thu"
+date: "2/1/2023"
+output: pdf_document
+---
+
+## Info
+
+- Thu: OH on Tuesday 9-10:30am in SC 316.06. Section on Thursday 9-10am SC 309a
+- Masaoud: OH on Tuesday 9-10:30pm in Kirkland Dhall. Section on Friday 12-1pm in Sever 209.
+
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyr)
+library(ggplot2)
+library(dplyr)
+```
+
+
+## Data
+
+```{r}
+data("airquality")
+```
+
+```{r}
+head(airquality)
+```
+\newpage
+
+# Remove NA:
+
+```{r}
+airquality_108 <- airquality %>% 
+  drop_na(Ozone, Solar.R, Wind, Temp, Month, Day)
+```
+
+
+\newpage
+
+# Make a wind chill column
+
+```{r}
+# formula:  35.74 + 0.6215 T - 35.75 V^0.16 + 0.4275 T V^0.16
+airquality_108 <- airquality %>%
+  drop_na(Ozone, Solar.R, Wind, Temp, Month, Day) %>%
+  mutate(wind_chill = 35.74 + 0.6215 * Temp - 35.75 * Wind^0.16 
+         + 0.4275 * Temp * Wind^0.16)
+```
+
+\newpage
+
+# Group by month, average, and make bar plot (or line plot is fine too)
+
+```{r}
+airquality_108 <- airquality %>%
+  drop_na(Ozone, Solar.R, Wind, Temp, Month, Day) %>%
+  group_by(Month) %>%
+  mutate(wind_chill = 35.74 + 0.6215 * Temp - 35.75 * Wind^0.16 
+         + 0.4275 * Temp * Wind^0.16) %>%
+  summarize(mean_wind = mean(Wind),
+            mean_ozone = mean(Ozone),
+            mean_solar = mean(Solar.R),
+            mean_temp = mean(Temp), 
+            mean_wind_chill = mean(wind_chill)) %>%
+  ungroup()
+```
+
+
+\newpage
+
+# Animate Bar Plot/Line Plot
+
+```{r}
+airquality_108 <- airquality %>%
+  drop_na(Ozone, Solar.R, Wind, Temp, Month, Day) %>%
+  group_by(Month) %>%
+  mutate(wind_chill = 35.74 + 0.6215 * Temp - 35.75 * Wind^0.16 
+         + 0.4275 * Temp * Wind^0.16) %>%
+  summarize(mean_wind = mean(Wind),
+            mean_ozone = mean(Ozone),
+            mean_solar = mean(Solar.R),
+            mean_temp = mean(Temp), 
+            mean_wind_chill = mean(wind_chill)) %>%
+  pivot_longer(cols = mean_wind:mean_wind_chill, 
+               names_to = "type_of_weather",
+               values_to = "measure") %>%
+  ungroup %>%
+  mutate_at(vars(type_of_weather), factor)
+
+```
+
+
+```{r}
+# Type of air quality measure on x axis, monthly average on y axis, animate the change as we move across months
+p <- ggplot(data = airquality_108, 
+       mapping = aes(x = Month, y = measure,
+                     color = type_of_weather)) +
+  geom_line(size = 2) + 
+  theme(legend.position = "bottom",
+        text = element_text(size=20)) +
+  guides(color = guide_legend(nrow = 2)) +
+  labs(y = "Measure",
+       x = "Month", color = "Type of Weather")
+p
+```
+
+```{r}
+library(gganimate)
+p_animate <- p +
+  transition_reveal(Month) +
+  labs(title = "It is the {round(frame_along, 0)}th Month of 1973.")
+animate(p_animate, fps = 5, end_pause = 40,
+        height = 4, width = 6.5,
+        units = "in", res = 100)
+```
+
+
