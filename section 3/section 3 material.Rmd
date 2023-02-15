@@ -63,7 +63,8 @@ key_word <- c("Statistics", "Computer Science", "Government", "General",
 grades <- data.frame(classes = classes,
                      student1 = student1,
                      student2 = student2, 
-                     student3 = student3)
+                     student3 = student3,
+                     key_word = key_word)
 ```
 
 Merge it with your old data set to get the keywords of your favorite classes. Which type of merge should you use? Which variable should you merge on? Which variables should you select at the end?
