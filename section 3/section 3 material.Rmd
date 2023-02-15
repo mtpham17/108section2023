@@ -43,7 +43,28 @@ Create a data frame of the previous vectors
 
 ```
 
+```{r}
+# creating dataset of school year of student taking a class
+classes <- c("Stat108", "CS50", "Gov20", "Gened1076", "LS50", "Econ10", "SCRB188", 
+             "Stat110")
+student1 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 8,  
+                   replace = TRUE)
+student2 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 8,  
+                   replace = TRUE)
+student3 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 8,  
+                   replace = TRUE)
 
+grades <- data.frame(classes = classes,
+                     student1 = student1,
+                     student2 = student2, 
+                     student3 = student3)
+```
+
+Now, use `pivot_longer()' to make this data frame into long format. Save it as the data frame `grades_long'
+
+```{r}
+# pivot_longer() code here
+```
 
 
 
