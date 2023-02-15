@@ -53,6 +53,8 @@ student2 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 8,
                    replace = TRUE)
 student3 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 8,  
                    replace = TRUE)
+key_word <- c("Statistics", "Computer Science", "Government", "General", 
+              "Life Sciences", "Economics", "Biology", "Statistics")
 
 grades <- data.frame(classes = classes,
                      student1 = student1,
