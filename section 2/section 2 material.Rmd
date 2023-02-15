@@ -19,6 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyr)
 library(ggplot2)
+library(dplyr)
 ```
 
 
@@ -29,14 +30,15 @@ data("airquality")
 ```
 
 ```{r}
-airquality
+head(airquality)
 ```
 \newpage
 
 # Remove NA:
 
 ```{r}
-
+airquality_108 <- airquality %>%
+  drop_na(Ozone:Temp)
 ```
 
 
@@ -46,16 +48,42 @@ airquality
 
 ```{r}
 # formula:  35.74 + 0.6215 T - 35.75 V^0.16 + 0.4275 T V^0.16
+# T = temperature
+# V = wind speed
+airquality_108 <- airquality %>%
+  drop_na(Ozone:Temp) %>%
+  mutate(wind_chill = 35.74 + 0.6215 * Temp - 35.75 * Wind^0.16 + 0.4275 * Temp * Wind^0.16)
 ```
 
 \newpage
 
 # Group by month, average, and make line plot (or whatever plot you want)
 
+```{r}
+airquality_108 <- airquality %>%
+  drop_na(Ozone, Solar.R, Wind, Temp, Month, Day) %>%
+  group_by(Month) %>%
+  mutate(wind_chill = 35.74 + 0.6215 * Temp - 35.75 * Wind^0.16 
+         + 0.4275 * Temp * Wind^0.16) %>%
+  summarize(mean_wind = mean(Wind),
+            mean_ozone = mean(Ozone),
+            mean_solar = mean(Solar.R),
+            mean_temp = mean(Temp), 
+            mean_wind_chill = mean(wind_chill)) %>%
+  ungroup %>%
+  pivot_longer(cols = mean_wind:mean_wind_chill,
+               names_to = "type_of_weather",
+               values_to = "measure")
+
+airquality_108
+
+```
+
+
 
 \newpage
 
-# Animate Bar Plot
+# Animate Line Plot
 
 ```{r}
 # Type of air quality measure on x axis, monthly average on y axis, animate the change as we move across months
