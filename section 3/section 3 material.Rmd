@@ -22,8 +22,7 @@ library(ggplot2)
 library(dplyr)
 ```
 
-
-## Data
+This section will primarily focus on helping you practice Data Joins and Reshaping, but we welcome any questions about git, vectors, and lists (including how to work with the nested structure).
 
 
 
