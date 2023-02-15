@@ -59,7 +59,8 @@ key_word <- c("Statistics", "Computer Science", "Government", "General",
 grades <- data.frame(classes = classes,
                      student1 = student1,
                      student2 = student2, 
-                     student3 = student3)
+                     student3 = student3,
+                     key_word = key_word)
 ```
 
 Now, use `pivot_longer()' to make this data frame into long format. Save it as the data frame `grades_long'
