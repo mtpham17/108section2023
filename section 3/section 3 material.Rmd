@@ -49,16 +49,15 @@ Here is a new dataset:
 
 ```{r}
 # creating dataset of school year of student taking a class
-classes <- c("Stat108", "CS50", "Gov20", "Gened1076", "LS50", "Econ10", "SCRB188", 
-             "Stat110")
-student1 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 8,  
+classes <- c("Stat108", "CS50", "Gov20", "Gened1076", "LS50")
+student1 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 5,  
                    replace = TRUE)
-student2 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 8,  
+student2 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 5,  
                    replace = TRUE)
-student3 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 8,  
+student3 <- sample(c("Freshman", "Sophomore", "Junior", "Senior", "Grad"), 5,  
                    replace = TRUE)
 key_word <- c("Statistics", "Computer Science", "Government", "General", 
-              "Life Sciences", "Economics", "Biology", "Statistics")
+              "Life Sciences")
 
 grades <- data.frame(classes = classes,
                      student1 = student1,
