@@ -22,21 +22,32 @@ library(ggplot2)
 library(dplyr)
 library(spData)
 library(sf)
+library(readr)
 ```
 
+We are using a US States Shapefile that is built into R. We load it here. Play around with the data and plot a blank map below.
 
 ```{r}
 # load in US States Data
 data(us_states)
-ggplot(data = us_states, 
-       mapping = 
-         aes(geometry = geometry)) + 
-  geom_sf() +
-  coord_sf() +
-  theme_void()
+# TODO: generate blank map here.
 ```
 
-```{r}
+Now, we'll load in some data about the presidential elections from 1976-2020.
 
+```{r}
+presidents <- read_csv("https://raw.githubusercontent.com/mtpham17/108section2023/main/section%204/presidents.csv")
+```
+
+Find an election year you are interested in. Select it (and do appropriate data wrangling) so that you can merge the relevant presidents data with your shapefile of the United States Map.
+
+```{r}
+## Data Wrangling
+```
+
+Finally, make a plot of voting data with the US Map.
+
+```{r}
+## Plot of Election Data on Map
 ```
 
