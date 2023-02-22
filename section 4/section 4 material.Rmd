@@ -20,5 +20,23 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyr)
 library(ggplot2)
 library(dplyr)
+library(spData)
+library(sf)
+```
+
+
+```{r}
+# load in US States Data
+data(us_states)
+ggplot(data = us_states, 
+       mapping = 
+         aes(geometry = geometry)) + 
+  geom_sf() +
+  coord_sf() +
+  theme_void()
+```
+
+```{r}
+
 ```
 
