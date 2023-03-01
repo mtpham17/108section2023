@@ -12,14 +12,13 @@ output: pdf_document
 
 \textbf{We will not have section not week (the week before spring break)! Good luck on your projects :)}
 
-\newpage
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r, include=FALSE}
 # load necessary packages here
+library(stringr)
 ```
 
 
@@ -30,9 +29,12 @@ We will now include a very high-level overview of this week's material. Please l
 - We also learned how to manipulate strings with the package `stringr`. For example, you can make all letters in a string uppercase with `str_to_upper()`.
 - On the topic of strings, sometimes we are interested in matching a particular pattern in a string. Kelly showed that it is not ideal to "hard code" the patterns we want to match (for example, if we want to match any numbers, we should not specify "0|1|2|...") because it's cumbersome and may fail to catch all the cases we want!
 - This brings us to regular expressions, or regexes for short. Regexes are sequences of characters that specifies a pattern in a string, and they can be pretty general.
+  - Feel free to use the physical "cheat sheet" from class. An online copy is also available here: https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_strings.pdf.
 
+\newpage
 
 Now, we will practice using Regular Expressions! Use `str_view_all()` to identify the pattern with a Regular Expression.
+
 
 ## Problem 1
 
@@ -85,6 +87,9 @@ g. Highlight the second to last character of fruits that end in a vowel.
 ```{r}
 
 ```
+
+
+\newpage
 
 ## Problem 2
 
