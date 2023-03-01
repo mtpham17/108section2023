@@ -31,6 +31,12 @@ We are using a US States Shapefile that is built into R. We load it here. Play a
 # load in US States Data
 data(us_states)
 # TODO: generate blank map here.
+ggplot(data = us_states, 
+       mapping = 
+         aes(geometry = geometry)) + 
+  geom_sf() +
+  coord_sf() +
+  theme_void()
 ```
 
 Now, we'll load in some data about the presidential elections from 1976-2020.
@@ -43,11 +49,35 @@ Find an election year you are interested in. Select it (and do appropriate data 
 
 ```{r}
 ## Data Wrangling
+presidents_2016 <- presidents %>%
+  filter(year == 2016) %>%
+  select(state, party_detailed, candidatevotes, totalvotes) %>%
+  filter(party_detailed %in% c("REPUBLICAN", "DEMOCRAT")) %>%
+  mutate(candidate_ratio = candidatevotes/totalvotes) %>%
+  group_by(state, party_detailed) %>%
+  summarize(total_party_ratio = sum(candidate_ratio)) %>%
+  ungroup()
+
+us_states_merge <- us_states %>%
+  mutate(NAME = toupper(NAME)) 
+
+us_states_votes <- right_join(us_states_merge, presidents_2016, by = c("NAME" = "state"))
+us_states_democrats <- us_states_votes %>%
+  filter(party_detailed == "DEMOCRAT")
 ```
+
+
 
 Finally, make a plot of voting data with the US Map.
 
 ```{r}
 ## Plot of Election Data on Map
+ggplot(data = us_states_democrats, 
+       mapping = 
+         aes(geometry = geometry,
+             fill = total_party_ratio)) + 
+  geom_sf() +
+  coord_sf() +   
+  theme_void()
 ```
 
