@@ -22,7 +22,7 @@ We will now include a very high-level overview of this week's material. Please l
 
 \newpage
 
-Now, we will practice with functions! This exercise was written by Prof. McConville. Solutions will be posted sometime before next week.
+Now, we will practice with functions! This exercise was written by Prof. McConville. Solutions will be posted sometime next week.
 
 a.  Turn the following working code into an R function.  Make sure to give it a good name.
 
