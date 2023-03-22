@@ -20,6 +20,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 We will now include a very high-level overview of this week's material. Please let us know what questions you have!
 
+- Shiny: workflow, reactive vs. static 
+- The control flow is the order or flow of the R code. We learned about logical operators; these are often used in \textbf{conditional control flow}, which is code that will execute depending on the value of if statements. (using \texttt{if(), ifelse()}, for example). It's important to continue using best practices with these new methods, such as stopping on invalid inputs and making sure to handle missing values correctly.
+- Functions are incredibly important and useful in R; it makes code more readable and reduces any user-driven errors. When writing a function, start with code that works and then generalize it so that it'll work with the inputs that you want. There are a lot of good practices to stick to in functions, such as naming arguments, checking inputs, and setting default values.
+
+
 \newpage
 
 Now, we will practice with functions! This exercise was written by Prof. McConville. Solutions will be posted sometime next week.
