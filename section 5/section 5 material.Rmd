@@ -43,49 +43,54 @@ For this problem we are going to use a subset of the character vector `fruit` th
 ```{r}
 set.seed(4433)
 fruit_s <- sample(fruit, 20)
+fruit_s
 ```
 
 
 a. Highlight the pattern "berry".
 
 ```{r}
-
+str_view_all(fruit_s, pattern = "berry")
 ```
 
 b. Now highlight all the fruits that contain the pattern "berry".  (Don't just highlight the word "berry").
 
 ```{r}
-
+str_view_all(fruit_s, ".*berry")
 ```
 
 c. Highlight only fruits that contain "berry" and are one word.
 
 ```{r}
-
+str_view_all(fruit_s, ".*(?<! )berry")
+str_view_all(fruit_s, "[:alpha:]+berry")
 ```
 
 d. Highlight any repeated characters (e.g. "oo", "ll").
 
 ```{r}
-
+# str_view_all(fruit_s, "(.){2,}")
+str_view_all(fruit_s, "(.)\\1")
 ```
 
 e. Highlight fruits that start with a vowel.
 
 ```{r}
-
+str_view_all(fruit_s, "(^a|^e|^i|^o|^u).+")
+str_view_all(fruit_s, "^[aeiou].+")
 ```
 
 f. Highlight fruits that don't start with a vowel.
 
 ```{r}
-
+str_view_all(fruit_s, "(^[^a|^e|^i|^o|^u]).+")
+str_view_all(fruit_s, "^[^aeiou].+")
 ```
 
 g. Highlight the second to last character of fruits that end in a vowel.
 
 ```{r}
-
+str_view_all(fruit_s, ".(?=[aeiou]$)")
 ```
 
 
