@@ -1,0 +1,102 @@
+---
+title: "section 5"
+author: "Masaoud AND Thu"
+date: "March 2 and 3, 2023"
+output: pdf_document
+---
+
+## Info
+
+- Thu: OH on Tuesday 9-10:30am in SC 316.06. Section on Thursday 1:30-2:30 PM SC 705.
+- Masaoud: OH on Tuesday 9-10:30pm in Kirkland Dhall. Section on Friday 12-1pm in Sever 209.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+\textbf{First: Any questions on projects? We can also answer any individual questions during the second half of our section!}
+
+We will now include a very high-level overview of this week's material. Please let us know what questions you have!
+
+- We can use Shiny to make dashboards. We want our apps to be reactive, so that we are not re-writing code every time a user enters different information. The UI (User Interface) functions generate HTML code for the web page, which set up the format of the page. Arguments that include the word "Input" is where users can enter information to interact with our app. A good practice is to separate the reactive and static code, placing any static code outside of the server function and the reactive code inside.
+  - Reactive expressions are useful for any reactive code that we have to run     multiple times.
+- The control flow is the order or flow of the R code. We learned about logical operators; these are often used in \textbf{conditional control flow}, which is code that will execute depending on the value of if statements. (using \texttt{if(), ifelse()}, for example). It's important to continue using best practices with these new methods, such as stopping on invalid inputs and making sure to handle missing values correctly.
+- Functions are incredibly important and useful in R; it makes code more readable and reduces any user-driven errors. When writing a function, start with code that works and then generalize it so that it'll work with the inputs that you want. There are a lot of good practices to stick to in functions, such as naming arguments, checking inputs, and setting default values.
+
+
+\newpage
+
+Now, we will practice with functions! This exercise was written by Prof. McConville. Solutions will be posted sometime next week.
+
+a.  Turn the following working code into an R function.  Make sure to give it a good name.
+
+
+```{r, eval = TRUE}
+library(pdxTrees)
+pdxTrees <- get_pdxTrees_parks()
+mean(is.na(pdxTrees$Tree_Height))
+```
+
+```{r}
+# What is this function doing?
+na_stats <- function(x, trim = 0) {
+  prop <- mean(is.na(x), trim = trim)
+  count <- sum(is.na(x))
+  return(data.frame("prop" = prop,
+                    "count" = count))
+}
+ 
+na_stats(pdxTrees$Tree_Height, 0.0001)
+na_stats(c(NA, 3, 4, 5))
+```
+
+
+
+b. For the following function, `thing`, figure out what it is trying to do.  Then 
+
+* Fix the function and argument names.
+* Fix the order of the arguments.
+* Fix defaults.
+* Consider ways we could generalize the function.
+
+```{r, eval = TRUE}
+thing <- function(na.rm = FALSE, x = c(7, 1), y = c(3, 4)) {
+  var1 <- mean(x, na.rm = TRUE)
+  var2 <- mean(y, na.rm = TRUE)
+  xx <- var(x, na.rm = TRUE)
+  yy <- var(y, na.rm = TRUE)
+  na <- length(x)
+  nb <- length(y)
+  df <- min(na, nb) - 1
+  important_bit <- (var1 - var2 - 0)/sqrt(xx/na + yy/nb)
+  pt(q = abs(important_bit), df = df, lower.tail = FALSE)*2
+}
+## Test it!
+# Generate data for testing
+x <- rnorm(n = 10)
+y <- rnorm(n = 20, mean = 2)
+# Test
+thing(na.rm = TRUE, x = x, y = y)
+thing(na.rm = FALSE)
+```
+
+
+```{r}
+# I changed na.rm = FALSE to na.rm = TRUE (although Masaoud can you check me on this? I'm just pretty sure it wouldn't work if we didn't remove any NA values)
+two_sample_t_test <- function(x, y, na.rm = TRUE, null = 0) {
+  mean_x <- mean(x, na.rm = na.rm)
+  mean_y <- mean(y, na.rm = na.rm)
+  var_x <- var(x, na.rm = na.rm)
+  var_y <- var(y, na.rm = na.rm)
+  n_x <- sum(!is.na(x))
+  n_y <- sum(!is.na(y))
+  df <- min(n_x, n_y) - 1
+  test_stat <- (mean_x - mean_y - null)/sqrt(var_x/n_x + var_y/n_y)
+  p_value <- pt(q = abs(test_stat), df = df, lower.tail = FALSE)*2
+  return(data.frame(test_stat = test_stat,
+                    df = df, p_value = p_value))
+}
+```
+
