@@ -22,11 +22,11 @@ We will now include a very high-level overview of the material after functions b
 - One way we can reduce duplication is through iteration. There are a few different types of iteration.
   - You can iterate in \texttt{dplyr}; some useful functions for this are \texttt{across()} (enumerating each column you want to work with), \texttt{everything()} (working with every column), and \texttt{where()} (specifying conditions of columns that you want to work with). An anonymous function is often used as an input to specify what you exactly want to do with a column, and we use ~ and .x when calling anonymous function (see lecture slides).
   - You can also iterate explicitly using loops. \texttt{for()} loops are for when we know the exact number of iterations we need, whereas \texttt{while()} will repeat until a certain condition is not met. 
-  - Finally, you can improve functional programming (functions that allow us to pass other functions as arguments) with iteration using the \texttt{purrr} package.
+  - Finally, you can improve functional programming (functions that allow us to pass other functions as arguments) with iteration using the \texttt{purrr} package. In particular, the \texttt{map\_XXX} functions loop over an R object and save results in either lists or different kinds of vectors.
   
 - We also learned about refactoring code.
-
-
+  - We can make code more readable by being intentional about indents and adding comments that are informative but not overbearing. In addition, you can also decompose functions or blocks of codes into smaller, simpler functions so the reader knows what is happening in everything you write.
+  - Sometimes, less is more. Try to simplify your conditional statements, and don't be afraid to use existing functions to make your code cleaner.
 
 
 \newpage 
