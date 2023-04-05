@@ -1,7 +1,7 @@
 ---
-title: "section 5"
+title: "section 6"
 author: "Masaoud AND Thu"
-date: "March 2 and 3, 2023"
+date: "March 23 and 24, 2023"
 output: pdf_document
 ---
 
@@ -22,7 +22,7 @@ We will now include a very high-level overview of this week's material. Please l
 
 - We can use Shiny to make dashboards. We want our apps to be reactive, so that we are not re-writing code every time a user enters different information. The UI (User Interface) functions generate HTML code for the web page, which set up the format of the page. The server contains the reactive code that renders our outputs. Arguments that include the word "Input" is where users can enter information to interact with our app. 
   - A good practice is to separate the reactive and static code, placing any static code outside of the server function and the reactive code inside.
-  - Reactive expressions are useful for any reactive code that we have to run     multiple times.
+  - Reactive expressions are useful for any reactive code that we have to run multiple times.
   - shinydashboard vs. flexdashboard
 - The control flow is the order or flow of the R code. We learned about logical operators; these are often used in \textbf{conditional control flow}, which is code that will execute depending on the value of if statements. (using \texttt{if(), ifelse()}, for example). It's important to continue using best practices with these new methods, such as stopping on invalid inputs and making sure to handle missing values correctly.
 - Functions are incredibly important and useful in R; it makes code more readable and reduces any user-driven errors. When writing a function, start with code that works and then generalize it so that it'll work with the inputs that you want. There are a lot of good practices to stick to in functions, such as naming arguments, checking inputs, and setting default values.
@@ -39,6 +39,21 @@ a.  Turn the following working code into an R function.  Make sure to give it a 
 library(pdxTrees)
 pdxTrees <- get_pdxTrees_parks()
 mean(is.na(pdxTrees$Tree_Height))
+```
+
+```{r}
+# Figure out what you want your function to do
+na_stats <- function(x) {
+  # return the proportion of NAs, as well as the count
+  prop <- mean(is.na(x))
+  # print(is.na(x))
+  count <- sum(is.na(x))
+  return(data.frame("prop" = prop,
+                    "count" = count))
+}
+
+# na_stats(x = pdxTrees$Tree_Height)
+na_stats(x = c(NA, 3, 2, 1))
 ```
 
 
@@ -61,17 +76,33 @@ thing <- function(na.rm = FALSE, x = c(7, 1), y = c(3, 4)) {
   nb <- length(y)
   df <- min(na, nb) - 1
   important_bit <- (var1 - var2 - 0)/sqrt(xx/na + yy/nb)
-  pt(q = abs(important_bit), df = df, lower.tail = FALSE)*2
+  return(pt(q = abs(important_bit), df = df, lower.tail = FALSE)*2)
 }
 ## Test it!
 # Generate data for testing
-x <- rnorm(n = 10)
+x <- rnorm(n = 10, mean = 1)
 y <- rnorm(n = 20, mean = 2)
 # Test
 thing(na.rm = TRUE, x = x, y = y)
 thing(na.rm = FALSE)
 ```
 
+```{r}
+t_test <- function(x, y, na.rm = TRUE) {
+  mean_x <- mean(x, na.rm = na.rm)
+  mean_y <- mean(y, na.rm = na.rm)
+  var_x <- var(x, na.rm = na.rm)
+  var_y <- var(y, na.rm = na.rm)
+  n_x <- length(x)
+  n_y <- length(y)
+  df <- min(n_x, n_y) - 1
+  test_stat <- (mean_x - mean_y - 0)/sqrt(var_x/n_x + var_y/n_y)
+  return(pt(q = abs(test_stat), df = df, lower.tail = FALSE)*2)
+}
+
+t_test(na.rm = TRUE, x = x, y = y)
+t_test()
+```
 
 
 

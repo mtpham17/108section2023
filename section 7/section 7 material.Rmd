@@ -5,9 +5,31 @@ date: "4/5/2023"
 output: pdf_document
 ---
 
+## Info
+
+- Thu: OH on Tuesday 9-10:30am in SC 316.06. Section on Thursday 1:30-2:30 PM SC 705.
+- Masaoud: OH on Tuesday 9-10:30pm in Kirkland Dhall. Section on Friday 12-1pm in Sever 209.
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
+\textbf{We will try to leave some time at the end to answer any questions about projects (for Thu's section only) and/or problem set 6.}
+
+We will now include a very high-level overview of the material after functions but before R packages (the next section will go over R packages). Please let us know what questions you have!
+
+- One way we can reduce duplication is through iteration. There are a few different types of iteration.
+  - You can iterate in \texttt{dplyr}; some useful functions for this are \texttt{across()} (enumerating each column you want to work with), \texttt{everything()} (working with every column), and \texttt{where()} (specifying conditions of columns that you want to work with). An anonymous function is often used as an input to specify what you exactly want to do with a column, and we use ~ and .x when calling anonymous function (see lecture slides).
+  - You can also iterate explicitly using loops. \texttt{for()} loops are for when we know the exact number of iterations we need, whereas \texttt{while()} will repeat until a certain condition is not met. 
+  - Finally, you can improve functional programming (functions that allow us to pass other functions as arguments) with iteration using the \texttt{purrr} package.
+  
+- We also learned about refactoring code.
+
+
+
+
+\newpage 
 
 ## Loops
 
