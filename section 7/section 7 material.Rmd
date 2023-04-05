@@ -12,5 +12,62 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Loops
 
 
-## Code Refactoring
+```{r}
+ggplot(mtcars, aes(x = mpg)) + geom_histogram()
+ggplot(mtcars, aes(x = cyl)) + geom_histogram()
+ggplot(mtcars, aes(x = disp)) + geom_histogram()
+ggplot(mtcars, aes(x = hp)) + geom_histogram()
+ggplot(mtcars, aes(x = drat)) + geom_histogram()
+ggplot(mtcars, aes(x = wt)) + geom_histogram()
+ggplot(mtcars, aes(x = qsec)) + geom_histogram()
+ggplot(mtcars, aes(x = vs)) + geom_histogram()
+ggplot(mtcars, aes(x = am)) + geom_histogram()
+ggplot(mtcars, aes(x = gear)) + geom_histogram()
+ggplot(mtcars, aes(x = carb)) + geom_histogram()
+```
+
+
+```{r}
+ggplot(mtcars, aes(x = mpg)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = cyl)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = disp)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = hp)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = drat)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = wt)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = qsec)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = vs)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = am)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = gear)) + geom_histogram(fill = "blue")
+ggplot(mtcars, aes(x = carb)) + geom_histogram(fill = "blue")
+```
+
+You can already see how every edit is exausting. Refactor the code to solve this problem. 
+
+```{r}
+
+```
+
+
+\newpage
+
+## Map
+
+Figure our what this code is doing. Refactor it:
+- Using mapping instead of a loop.
+- Renaming variables
+- Renaming rows and columns
+
+```{r}
+x = matrix(nrow = length(names(mtcars)), ncol = length(names(mtcars)))
+for (i in 1:length(names(mtcars))){
+  for (j in 1:length(names(mtcars))){
+    x[i, j] = cov(mtcars[i], mtcars[j])
+  }
+}
+x
+```
+
+
+
+
 
