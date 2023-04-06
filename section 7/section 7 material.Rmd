@@ -63,7 +63,7 @@ ggplot(mtcars, aes(x = gear)) + geom_histogram(fill = "blue")
 ggplot(mtcars, aes(x = carb)) + geom_histogram(fill = "blue")
 ```
 
-You can already see how every edit is exausting. Refactor the code to solve this problem. 
+You can already see how every edit is exhausting. Refactor the code to solve this problem. 
 
 ```{r}
 
@@ -74,7 +74,7 @@ You can already see how every edit is exausting. Refactor the code to solve this
 
 ## Map
 
-Figure our what this code is doing. Refactor it:
+Figure out what this code is doing. Refactor it:
 - Using mapping instead of a loop.
 - Renaming variables
 - Renaming rows and columns
@@ -89,6 +89,10 @@ for (i in 1:length(names(mtcars))){
 x
 ```
 
+
+```{r}
+
+```
 
 
 
